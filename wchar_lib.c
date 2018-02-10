@@ -64,6 +64,8 @@ wchar_t		*ft_strsub_wchar_t(wchar_t *str, unsigned int start, size_t len)
 		if (equal >= 0)
 			return (copy);
 	}
+	if (copy != NULL)
+		free(copy);
 	return (0);
 }
 

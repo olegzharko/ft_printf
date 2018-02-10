@@ -90,21 +90,22 @@ void		work_with_arg_utf_s(t_pars *stc_p, va_list ap, int *length)
 	wchar_t			*s;
 	unsigned int	sz;
 
-	if ((r = va_arg(ap, wchar_t *)) == NULL)
-		r = ft_strdup_wchar_t(L"(null)");
-	else
-		r = ft_strdup_wchar_t(r);
+	w = 0;
+	r = va_arg(ap, wchar_t *);
+	r = r == NULL ? ft_strdup_wchar_t(L"(null)")
+	: ft_strdup_wchar_t(r);
 	counter_width_wchar(r, &sz);
 	r = stc_p->precition != 0 ? ft_add_prec_s_wchar_t(r, stc_p) : r;
 	if (stc_p->precition == 0 && stc_p->precition_on == 1)
-		r = L"";
-	s = ft_atoi(stc_p->pars_key[1]) != 0 ? sp_utf_s(r, stc_p, &w, sz) : L"";
+		r = invisible_str(r);
+	s = (ft_atoi(stc_p->pars_key[1]) != 0) ?
+	sp_utf_s(r, stc_p, &w, sz) : ft_strdup_wchar_t(L"");
 	if (stc_p->flag_minus == '-' && w > 0)
 		r = str1_free_str2_utf(r, s);
-	else if (w != 0 && r[0] != '\0')
+	else if (w != 0 && r[0] != '\0' && s[0] != 0)
 		r = str2_free_str1_utf(s, r);
-	else if (w != 0 && r[0] == '\0')
-		r = ft_strdup_wchar_t(s);
+	if (w != 0 && r[0] == '\0')
+		r = str2_free_str1_utf(s, r);
 	test_count_len(r, sz, length);
 	free_work_with_arg_utf_s(s, r);
 }

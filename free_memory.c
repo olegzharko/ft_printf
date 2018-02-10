@@ -22,15 +22,15 @@ void	free_work_with_arg(char *result, char *str)
 
 void	free_work_with_arg_utf_s(wchar_t *str, wchar_t *result)
 {
-	if (str[0] != L'\0')
+	if (str != NULL)
 		free(str);
-	if (result[0] != L'\0')
+	if (result != NULL)
 		free(result);
 }
 
 void	free_work_with_arg_s(char *str, char *result)
 {
-	if (str[0] != '\0' && str != NULL)
+	if (str[0] != '\0' || str != NULL)
 		free(str);
 	if (result != NULL)
 		free(result);

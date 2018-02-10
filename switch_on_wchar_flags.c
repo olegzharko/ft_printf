@@ -51,11 +51,16 @@ wchar_t	*ft_add_prec_s_wchar_t(wchar_t *res, t_pars *strct)
 {
 	int		num;
 	size_t	i;
+	wchar_t *tmp;
 
 	i = 0;
 	num = strct->precition;
 	if (num > 0)
-		res = ft_strsub_wchar_t(res, 0, num);
+	{
+		tmp = res;
+		res = ft_strsub_wchar_t(tmp, 0, num);
+		free(tmp);
+	}
 	if (res == NULL)
 		res = ft_strdup_wchar_t(L"");
 	return (res);

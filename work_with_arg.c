@@ -48,7 +48,7 @@ char	*w_w_arg_x_if_more(char *res, t_pars *st_p, char **str, size_t width)
 		free(*str);
 	*str = how_much_spases_x(res, st_p, &width);
 	if (st_p->flag_minus)
-		res = ft_strjoin(res, *str);
+		res = str1_free_str2(res, *str);
 	else if (st_p->flag_zero && st_p->precition == 0 &&
 		res[0] != '0')
 		res = str2_free_str1(ft_num_zero(*str), res);
@@ -76,6 +76,8 @@ void	work_with_arg_x(t_pars *struct_pars, va_list ap, int *length)
 	if (struct_pars->precition_on == 1 && struct_pars->precition == 0)
 	{
 		ft_putstr_count(str, length);
+		if (result != NULL)
+			free(result);
 		if (str != NULL)
 			free(str);
 		return ;
@@ -97,21 +99,21 @@ void	work_with_arg_o(t_pars *str_prs, va_list ap, int *length)
 	char			*result;
 
 	result = type_of_base_o(str_prs, ap);
-	if (str_prs->precition)
-		result = ft_add_prec(result, str_prs);
-	if (str_prs->flag_hash == '#' && result[0] != '0')
-		result = str2_free_str1("0", result);
+	result = (str_prs->precition) ? ft_add_prec(result, str_prs) : result;
+	result = (str_prs->flag_hash == '#' && result[0] != '0') ?
+	str2_free_str1("0", result) : result;
 	str = how_much_spases_o(result, str_prs, &width);
 	if (str_prs->flag_minus)
 		result = str1_free_str2(result, str);
 	else if (str_prs->flag_zero && str_prs->precition == 0)
 		result = str2_free_str1(ft_num_zero(str), result);
-	if (width != 0 && str_prs->flag_zero == 0 && str_prs->flag_minus == 0)
-		result = str2_free_str1(str, result);
+	result = (width != 0 && str_prs->flag_zero == 0 && str_prs->flag_minus == 0)
+	? str2_free_str1(str, result) : result;
 	if (str_prs->precition_on == 1 && str_prs->precition == 0 &&
 		str_prs->flag_hash != '#')
 	{
 		ft_putstr_count(str, length);
+		free_work_with_arg(result, str);
 		return ;
 	}
 	ft_putstr_count(result, length);

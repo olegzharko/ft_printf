@@ -126,5 +126,7 @@ int				my_length_utf_d(long long int value, int base);
 intmax_t		ch_val_of_int(t_pars *stc, va_list ap);
 char			*find_value_1(char *result, t_pars *stc, char *str);
 char			*find_value_2(char *result, t_pars *stc, char *str);
+wchar_t			*invisible_str(wchar_t *r);
+char			*ft_strdup_free(char *res, char *str);
 
 #endif

@@ -91,7 +91,7 @@ char		*ft_add_prec_s(char *result, t_pars *struct_pars)
 		num = struct_pars->precition;
 	if (num > 0)
 	{
-		tmp = ft_strdup(result);
+		tmp = result;
 		result = ft_strsub(tmp, 0, num);
 		free(tmp);
 	}

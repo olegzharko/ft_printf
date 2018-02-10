@@ -127,19 +127,19 @@ void	work_with_arg_s(t_pars *stc_p, va_list ap, int *length)
 		work_with_arg_utf_s(stc_p, ap, length);
 		return ;
 	}
-	if ((res = va_arg(ap, char *)) == NULL)
-		res = ft_strdup("(null)");
-	else
-		res = ft_strdup(res);
+	res = va_arg(ap, char *);
+	res = res == NULL ? ft_strdup("(null)") : ft_strdup(res);
 	res = stc_p->precition != 0 ? ft_add_prec_s(res, stc_p) : res;
-	res = (stc_p->precition == 0 && stc_p->precition_on == 1) ? "" : res;
-	str = ft_atoi(stc_p->pars_key[1]) != 0 ? hw_mch_sp(res, stc_p, &width) : "";
+	res = (stc_p->precition == 0 && stc_p->precition_on == 1) ?
+	ft_strdup_free(res, "") : res;
+	str = ft_atoi(stc_p->pars_key[1]) != 0 ?
+	hw_mch_sp(res, stc_p, &width) : ft_strdup("");
 	if (stc_p->flag_minus == '-' && width > 0)
 		res = str1_free_str2(res, str);
 	else if (width != 0 && res[0] != '\0')
 		res = str2_free_str1(str, res);
 	else if (width != 0 && res[0] == '\0')
-		res = ft_strdup(str);
+		res = ft_strdup_free(res, str);
 	ft_putstr_count(res, length);
 	free_work_with_arg_s(str, res);
 }
