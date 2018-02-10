@@ -91,7 +91,7 @@ int		fun_pars_key_length(char *key, int start, t_pars *struct_pars)
 	while (is_length(key[i]))
 		i++;
 	if ((i - start) >= 3)
-		exit(-1);
+		struct_pars->dont_print = 1;
 	str = ft_strsub(key, start, i - start);
 	if (str[0] == 'l' && str[1] == 'l')
 		struct_pars->ll = 1;

@@ -17,6 +17,7 @@ SRC =	choose_type_of_arg.c		\
 		work_with_c_utf_c.c			\
 		work_with_d_utf_d_u_s.c		\
 		work_with_wchar_s.c			\
+		help.c						\
 
 OBJ = $(SRC:.c=.o)
 

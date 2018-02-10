@@ -30,12 +30,10 @@ void	free_struct(t_pars *struct_pars)
 void	decoding_type(char *k, va_list ap, t_pars *stc, int *length)
 {
 	size_t		i;
-	int			start;
 	int			key_len;
 
 	key_len = ft_strlen(k);
 	i = -1;
-	start = 0;
 	stc = (t_pars *)malloc(sizeof(t_pars));
 	pars_key_alloc_zero(stc, key_len);
 	while (++i < ft_strlen(k))
@@ -51,7 +49,8 @@ void	decoding_type(char *k, va_list ap, t_pars *stc, int *length)
 		if (is_type(k[i]))
 			fun_pars_key_type(k, i, stc);
 	}
-	choose_type_of_arg(stc, ap, length);
+	if (stc->dont_print == 0)
+		choose_type_of_arg(stc, ap, length);
 	if (stc != NULL)
 		free_struct(stc);
 }
@@ -117,7 +116,7 @@ int		ft_printf(const char *format, ...)
 		key = cut_from_per_to_type((char *)format, &i);
 		if (key != NULL)
 		{
-				decoding_type(key, ap, struct_pars, &length);
+			decoding_type(key, ap, struct_pars, &length);
 			free(key);
 		}
 	}

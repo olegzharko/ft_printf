@@ -38,21 +38,6 @@ char	*ft_uintmxtoa(size_t n)
 	return (str);
 }
 
-int		my_length(intmax_t value, size_t base)
-{
-	long long int		i;
-
-	i = 0;
-	if (value == 0)
-		return (1);
-	while (value)
-	{
-		value = value / base;
-		i++;
-	}
-	return (i);
-}
-
 char	*ft_itoa_base_ux(intmax_t value, size_t base)
 {
 	long long int		i;
@@ -77,52 +62,32 @@ char	*ft_itoa_base_ux(intmax_t value, size_t base)
 	return (str);
 }
 
-int		my_length_utf_d(long long int value, int base)
-{
-    long long int		i;
-
-    i = 0;
-    if (value == 0)
-        return (1);
-	if (value < 0)
-	{
-		i++;
-	}
-    while (value)
-    {
-        value = value / base;
-        i++;
-    }
-    return (i);
-}
 char	*ft_itoa_base_ux_utf_d(long long int value, int base)
 {
-    char				*num;
-    char				*str;
-    long long int		length;
+	char				*num;
+	char				*str;
+	long long int		length;
 
-    num = "0123456789abcdef";
-    length = my_length_utf_d(value, base);
-    str = (char *)malloc(sizeof(char) * (length + 1));
-    str[length] = '\0';
-
-    if (value == 0)
-    {
-        str[0] = '0';
-        return (str);
-    }
-
+	num = "0123456789abcdef";
+	length = my_length_utf_d(value, base);
+	str = (char *)malloc(sizeof(char) * (length + 1));
+	str[length] = '\0';
+	if (value == 0)
+	{
+		str[0] = '0';
+		return (str);
+	}
 	if (value < 0)
 		value = value * (-1);
-    while (value)
-    {
-        length--;
-        str[length] = num[value % base];
-        value = value / base;
-    }
+	while (value)
+	{
+		length--;
+		str[length] = num[value % base];
+		value = value / base;
+	}
 	if (length)
 		str[--length] = '-';
-    return (str);
+	return (str);
 }
 
 char	*ft_itoa_base_ux_size_t(unsigned int value, unsigned int base)

@@ -15,7 +15,6 @@
 
 # include "./libft/libft.h"
 # include <stdarg.h>
-# include <limits.h>
 # include <wchar.h>
 
 typedef struct	s_pars
@@ -41,6 +40,7 @@ typedef struct	s_pars
 	int			j;
 	int			z;
 	int			counter;
+	int			dont_print;
 }				t_pars;
 
 int				ft_printf(const char *restrict format, ...);
@@ -121,5 +121,10 @@ int				my_len(intmax_t value, size_t base);
 char			*ft_itoa_base_ux(intmax_t value, size_t base);
 char			*ft_itoa_base_ux_size_t(unsigned int value, unsigned int base);
 char			*ft_itoa_base_ux_utf_d(long long int value, int base);
+int				my_length(intmax_t value, size_t base);
+int				my_length_utf_d(long long int value, int base);
+intmax_t		ch_val_of_int(t_pars *stc, va_list ap);
+char			*find_value_1(char *result, t_pars *stc, char *str);
+char			*find_value_2(char *result, t_pars *stc, char *str);
 
 #endif

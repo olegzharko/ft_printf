@@ -66,7 +66,7 @@ ft_strrchr.c		\
 ft_lstiter.c		\
 ft_putendl.c		\
 ft_striter.c		\
-ft_strrev.c
+ft_strrev.c			\
 
 OBJS = $(SRCS:%.c=%.o)
 

@@ -83,14 +83,15 @@ char	*how_much_spases_x(char *result, t_pars *struct_pars, size_t *width)
 	key1 = (size_t)ft_atoi(struct_pars->pars_key[1]);
 	if (struct_pars->flag_hash == '#' && result[1] != 'x' && result[1] != 'X')
 		length = length + 2;
-    if (result[0] == '0' && result[1] == '\0' && struct_pars->precition == 0 && struct_pars->precition_on == 1)
-        length = 0;
-    else if (result[0] == '0' && result[1] == '\0')
-        length = 1;
+	if (result[0] == '0' && result[1] == '\0' && struct_pars->precition == 0 &&
+		struct_pars->precition_on == 1)
+		length = 0;
+	else if (result[0] == '0' && result[1] == '\0')
+		length = 1;
 	str = NULL;
 	if (length < key1)
 	{
-		*width =key1- length;
+		*width = key1 - length;
 		if ((struct_pars->flag_plus || struct_pars->flag_space) && *width > 0)
 			*width = *width - 1;
 	}
@@ -108,10 +109,11 @@ char	*how_much_spases_o(char *result, t_pars *struct_pars, size_t *width)
 
 	length = ft_strlen(result);
 	key1 = (size_t)ft_atoi(struct_pars->pars_key[1]);
-    if (result[0] == '0' && result[1] == '\0' && struct_pars->precition == 0 && struct_pars->precition_on == 1)
-        length = 0;
-    else if (result[0] == '0' && result[1] == '\0')
-        length = 1;
+	if (result[0] == '0' && result[1] == '\0' && struct_pars->precition == 0 &&
+		struct_pars->precition_on == 1)
+		length = 0;
+	else if (result[0] == '0' && result[1] == '\0')
+		length = 1;
 	str = NULL;
 	if (length < key1)
 	{

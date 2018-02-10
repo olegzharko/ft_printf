@@ -31,6 +31,7 @@ void	pars_key_alloc_zero_short(t_pars *struct_pars)
 	struct_pars->j = 0;
 	struct_pars->z = 0;
 	struct_pars->str = 0;
+	struct_pars->dont_print = 0;
 }
 
 void	pars_key_alloc_zero(t_pars *struct_pars, size_t len)
