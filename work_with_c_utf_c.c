@@ -25,12 +25,12 @@ void	prnt_wwarg_c(t_pars *stc_p, int *len, wchar_t c)
 	else if (stc_p->width != 0 && c != 0)
 	{
 		ft_putstr_count(stc_p->str, len);
-		test_wchar_fun(c, size);
+		test_wchar_fun(c, size, stc_p);
 	}
 	else if (stc_p->width != 0 && c == 0)
 		ft_putstr_count(stc_p->str, len);
 	else if (c != 0)
-		test_wchar_fun(c, size);
+		test_wchar_fun(c, size, stc_p);
 }
 
 void	work_with_arg_c(t_pars *stc_p, va_list ap, int *length)
@@ -65,18 +65,18 @@ void	prnt_utf_c(t_pars *stc_p, wchar_t c, size_t size, int *len)
 	if (stc_p->flag_minus == '-' && stc_p->width > 0)
 	{
 		if (c != 0)
-			test_wchar_fun(c, size);
+			test_wchar_fun(c, size, stc_p);
 		ft_putstr_count(stc_p->str, len);
 	}
 	else if (stc_p->width != 0 && c != 0)
 	{
 		ft_putstr_count(stc_p->str, len);
-		test_wchar_fun(c, size);
+		test_wchar_fun(c, size, stc_p);
 	}
 	else if (stc_p->width != 0 && c == 0)
 		ft_putstr_count(stc_p->str, len);
 	else if (c != 0)
-		test_wchar_fun(c, size);
+		test_wchar_fun(c, size, stc_p);
 }
 
 int		size_work_with_arg_utf_c(wchar_t c)

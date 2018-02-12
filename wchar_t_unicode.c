@@ -12,47 +12,71 @@
 
 #include "libftprintf.h"
 
-void	p1(unsigned int v, unsigned char octet)
+void	p1(t_pars *stc_p)
 {
-	octet = v;
-	write(1, &octet, 1);
+	stc_p->octet = stc_p->v;
+	write(1, &stc_p->octet, 1);
 }
 
-void	p2(unsigned char *o, unsigned v, unsigned char octet, unsigned *mask)
+void	p2(t_pars *stc_p)
 {
-	o[1] = (v << 26) >> 26;
-	o[0] = ((v >> 6) << 27) >> 27;
-	octet = (mask[1] >> 8) | o[0];
-	write(1, &octet, 1);
-	octet = ((mask[1] << 24) >> 24) | o[1];
-	write(1, &octet, 1);
+	int		i;
+
+	i = 0;
+	stc_p->o[1] = (stc_p->v << 26) >> 26;
+	stc_p->o[0] = ((stc_p->v >> 6) << 27) >> 27;
+	while (i < 2)
+	{
+		if (i == 0)
+			stc_p->octet = (stc_p->mask[1] >> 8) | stc_p->o[0];
+		else if (i == 1)
+			stc_p->octet = ((stc_p->mask[1] << 24) >> 24) | stc_p->o[1];
+		write(1, &stc_p->octet, 1);
+		i++;
+	}
 }
 
-void	p3(unsigned char *o, unsigned v, unsigned char octet, unsigned *mask)
+void	p3(t_pars *stc_p)
 {
-	o[2] = (v << 26) >> 26;
-	o[1] = ((v >> 6) << 26) >> 26;
-	o[0] = ((v >> 12) << 28) >> 28;
-	octet = (mask[2] >> 16) | o[0];
-	write(1, &octet, 1);
-	octet = ((mask[2] << 16) >> 24) | o[1];
-	write(1, &octet, 1);
-	octet = ((mask[2] << 24) >> 24) | o[2];
-	write(1, &octet, 1);
+	int		i;
+
+	i = 0;
+	stc_p->o[2] = (stc_p->v << 26) >> 26;
+	stc_p->o[1] = ((stc_p->v >> 6) << 26) >> 26;
+	stc_p->o[0] = ((stc_p->v >> 12) << 28) >> 28;
+	while (i < 3)
+	{
+		if (i == 0)
+			stc_p->octet = (stc_p->mask[2] >> 16) | stc_p->o[0];
+		else if (i == 1)
+			stc_p->octet = ((stc_p->mask[2] << 16) >> 24) | stc_p->o[1];
+		else if (i == 2)
+			stc_p->octet = ((stc_p->mask[2] << 24) >> 24) | stc_p->o[2];
+		write(1, &stc_p->octet, 1);
+		i++;
+	}
 }
 
-void	p4(unsigned char *o, unsigned v, unsigned char octet, unsigned *mask)
+void	p4(t_pars *stc_p)
 {
-	o[3] = (v << 26) >> 26;
-	o[2] = ((v >> 6) << 26) >> 26;
-	o[1] = ((v >> 12) << 26) >> 26;
-	o[0] = ((v >> 18) << 29) >> 29;
-	octet = (mask[3] >> 24) | o[0];
-	write(1, &octet, 1);
-	octet = ((mask[3] << 8) >> 24) | o[1];
-	write(1, &octet, 1);
-	octet = ((mask[3] << 16) >> 24) | o[2];
-	write(1, &octet, 1);
-	octet = ((mask[3] << 24) >> 24) | o[3];
-	write(1, &octet, 1);
+	int		i;
+
+	i = 0;
+	stc_p->o[3] = (stc_p->v << 26) >> 26;
+	stc_p->o[2] = ((stc_p->v >> 6) << 26) >> 26;
+	stc_p->o[1] = ((stc_p->v >> 12) << 26) >> 26;
+	stc_p->o[0] = ((stc_p->v >> 18) << 29) >> 29;
+	while (i < 4)
+	{
+		if (i == 0)
+			stc_p->octet = (stc_p->mask[3] >> 24) | stc_p->o[i];
+		else if (i == 1)
+			stc_p->octet = ((stc_p->mask[3] << 8) >> 24) | stc_p->o[i];
+		else if (i == 2)
+			stc_p->octet = ((stc_p->mask[3] << 16) >> 24) | stc_p->o[i];
+		else if (i == 3)
+			stc_p->octet = ((stc_p->mask[3] << 24) >> 24) | stc_p->o[i];
+		write(1, &stc_p->octet, 1);
+		i++;
+	}
 }

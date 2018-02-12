@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-wchar_t		*str1_free_str2_utf(wchar_t *result, wchar_t *str)
+wchar_t	*str1_free_str2_utf(wchar_t *result, wchar_t *str)
 {
 	wchar_t	*tmp;
 
@@ -22,7 +22,7 @@ wchar_t		*str1_free_str2_utf(wchar_t *result, wchar_t *str)
 	return (result);
 }
 
-wchar_t		*str2_free_str1_utf(wchar_t *str, wchar_t *result)
+wchar_t	*str2_free_str1_utf(wchar_t *str, wchar_t *result)
 {
 	wchar_t	*tmp;
 
@@ -32,7 +32,7 @@ wchar_t		*str2_free_str1_utf(wchar_t *str, wchar_t *result)
 	return (result);
 }
 
-void		counter_width_wchar(wchar_t *result, unsigned int *size)
+void	counter_width_wchar(wchar_t *result, unsigned int *size)
 {
 	int				i;
 	int				counter;
@@ -56,7 +56,7 @@ void		counter_width_wchar(wchar_t *result, unsigned int *size)
 	}
 }
 
-void		test_count_len(wchar_t *result, unsigned int size, int *length)
+void	test_count_len(wchar_t *res, unsigned size, int *length, t_pars *stc_p)
 {
 	int				i;
 	int				counter;
@@ -64,9 +64,9 @@ void		test_count_len(wchar_t *result, unsigned int size, int *length)
 
 	i = 0;
 	counter = 0;
-	while (result[i])
+	while (res[i])
 	{
-		value = (unsigned int)result[i];
+		value = (unsigned int)res[i];
 		size = ft_count_bits(value);
 		if (size <= 7)
 			size = 1;
@@ -76,14 +76,14 @@ void		test_count_len(wchar_t *result, unsigned int size, int *length)
 			size = 3;
 		else
 			size = 4;
-		test_wchar_fun(result[i], size);
+		test_wchar_fun(res[i], size, stc_p);
 		i++;
 		counter += size;
 	}
 	*length += counter;
 }
 
-void		work_with_arg_utf_s(t_pars *stc_p, va_list ap, int *length)
+void	work_with_arg_utf_s(t_pars *stc_p, va_list ap, int *length)
 {
 	size_t			w;
 	wchar_t			*r;
@@ -106,6 +106,6 @@ void		work_with_arg_utf_s(t_pars *stc_p, va_list ap, int *length)
 		r = str2_free_str1_utf(s, r);
 	if (w != 0 && r[0] == '\0')
 		r = str2_free_str1_utf(s, r);
-	test_count_len(r, sz, length);
+	test_count_len(r, sz, length, stc_p);
 	free_work_with_arg_utf_s(s, r);
 }

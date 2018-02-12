@@ -66,25 +66,24 @@ wchar_t	*ft_add_prec_s_wchar_t(wchar_t *res, t_pars *strct)
 	return (res);
 }
 
-int		test_wchar_fun(unsigned int v, int size)
+int		test_wchar_fun(unsigned int v, int size, t_pars *stc_p)
 {
-	unsigned char	o[4];
-	unsigned char	octet;
-	unsigned int	mask[4];
-
-	octet = 0;
-	mask[0] = 0;
-	mask[1] = 49280;
-	mask[2] = 14712960;
-	mask[3] = 4034953344;
+	ft_bzero(stc_p->mask, 4);
+	ft_bzero(stc_p->o, 4);
+	stc_p->octet = 0;
+	stc_p->mask[0] = 0;
+	stc_p->mask[1] = 49280;
+	stc_p->mask[2] = 14712960;
+	stc_p->mask[3] = 4034953344;
+	stc_p->v = v;
 	if (size == 1)
-		p1(v, octet);
+		p1(stc_p);
 	else if (size == 2)
-		p2(o, v, octet, mask);
+		p2(stc_p);
 	else if (size == 3)
-		p3(o, v, octet, mask);
+		p3(stc_p);
 	else if (size == 4)
-		p4(o, v, octet, mask);
+		p4(stc_p);
 	return (0);
 }
 
