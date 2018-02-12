@@ -34,11 +34,11 @@ void	chose_char(t_pars *struct_pars, va_list ap, int *lenght)
 	char	cmp;
 
 	cmp = struct_pars->pars_key[4][0];
-	if ((cmp == 's' || cmp == 'S') && MB_CUR_MAX == 1)
+	if (cmp == 's' || (cmp == 'S' && MB_CUR_MAX == 1))
 		work_with_arg_s(struct_pars, ap, lenght);
 	if (cmp == 'S')
 		work_with_arg_utf_s(struct_pars, ap, lenght);
-	if ((cmp == 'c' || cmp == 'C') && MB_CUR_MAX == 1)
+	if (cmp == 'c' || (cmp == 'C' && MB_CUR_MAX == 1))
 		work_with_arg_c(struct_pars, ap, lenght);
 	if (cmp == 'C')
 		work_with_arg_utf_c(struct_pars, ap, lenght);
