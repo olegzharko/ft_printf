@@ -1,5 +1,5 @@
 NAME = libftprintf.a
-FLAG =  -O3
+FLAG =  -Wall -Werror -Wextra
 SRC =	choose_type_of_arg.c		\
 		free_memory.c 				\
 		ft_printf.c					\
