@@ -1,5 +1,5 @@
 NAME = libftprintf.a
-FLAG =  -Wall -Werror -Wextra -O3
+FLAG =  -O3
 SRC =	choose_type_of_arg.c		\
 		free_memory.c 				\
 		ft_printf.c					\
@@ -18,7 +18,7 @@ SRC =	choose_type_of_arg.c		\
 		work_with_d_utf_d_u_s.c		\
 		work_with_wchar_s.c			\
 		help.c						\
-		make_s_happy.c
+		make_s_happy.c				\
 
 OBJ = $(SRC:.c=.o)
 

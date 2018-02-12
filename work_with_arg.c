@@ -39,26 +39,25 @@ char	*w_w_arg_x_if_more(char *res, t_pars *st_p, char **str, size_t width)
 	if (st_p->precition)
 		res = ft_add_prec(res, st_p);
 	if (st_p->flag_hash == '#' && st_p->pars_key[4][0] == 'x' &&
-		st_p->flag_zero == 0)
+		st_p->flag_zero == 0 && res[0] != '0' && ft_atoi(res) > 0)
 		res = str2_free_str1(st_p->zero_small_x, res);
 	if (st_p->flag_hash == '#' && st_p->pars_key[4][0] == 'X' &&
-		st_p->flag_zero == 0)
+		st_p->flag_zero == 0 && res[0] != '0' && ft_atoi(res) > 0)
 		res = str2_free_str1(st_p->zero_big_x, res);
 	if (*str != NULL)
 		free(*str);
 	*str = how_much_spases_x(res, st_p, &width);
 	if (st_p->flag_minus)
 		res = str1_free_str2(res, *str);
-	else if (st_p->flag_zero && st_p->precition == 0 &&
-		res[0] != '0')
+	else if (st_p->flag_zero && st_p->precition == 0)
 		res = str2_free_str1(ft_num_zero(*str), res);
 	else if (width != 0)
 		res = str2_free_str1(*str, res);
 	if (st_p->flag_hash == '#' && st_p->pars_key[4][0] == 'x' &&
-		st_p->flag_zero)
+		st_p->flag_zero && ft_atoi(res) > 0)
 		res = str2_free_str1(st_p->zero_small_x, res);
 	if (st_p->flag_hash == '#' && st_p->pars_key[4][0] == 'X' &&
-		st_p->flag_zero)
+		st_p->flag_zero && ft_atoi(res) > 0)
 		res = str2_free_str1(st_p->zero_big_x, res);
 	return (res);
 }
@@ -71,8 +70,7 @@ void	work_with_arg_x(t_pars *struct_pars, va_list ap, int *length)
 
 	result = type_of_base_x(struct_pars, ap);
 	str = how_much_spases_x(result, struct_pars, &width);
-	if (result[0] != '0')
-		result = w_w_arg_x_if_more(result, struct_pars, &str, width);
+	result = w_w_arg_x_if_more(result, struct_pars, &str, width);
 	if (struct_pars->precition_on == 1 && struct_pars->precition == 0)
 	{
 		ft_putstr_count(str, length);
@@ -81,11 +79,6 @@ void	work_with_arg_x(t_pars *struct_pars, va_list ap, int *length)
 		if (str != NULL)
 			free(str);
 		return ;
-	}
-	if (result[0] == '0' && result[1] == '\0')
-	{
-		result = str2_free_str1(str, result);
-		ft_putstr_count(result, length);
 	}
 	else
 		ft_putstr_count(result, length);

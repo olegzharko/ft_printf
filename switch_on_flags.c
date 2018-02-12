@@ -81,7 +81,8 @@ char	*how_much_spases_x(char *result, t_pars *struct_pars, size_t *width)
 
 	length = ft_strlen(result);
 	key1 = (size_t)ft_atoi(struct_pars->pars_key[1]);
-	if (struct_pars->flag_hash == '#' && result[1] != 'x' && result[1] != 'X')
+	if (struct_pars->flag_hash == '#' && result[1] != 'x' && result[1] != 'X' &&
+		ft_atoi(result) != 0)
 		length = length + 2;
 	if (result[0] == '0' && result[1] == '\0' && struct_pars->precition == 0 &&
 		struct_pars->precition_on == 1)
